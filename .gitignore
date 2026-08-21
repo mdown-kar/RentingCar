@@ -1,0 +1,13 @@
+/vendor
+/node_modules
+/.env
+/public/storage
+/docs/spec/html
+~$*
+.DS_Store
+/api/vendor
+/api/.env
+/api/storage/*.key
+/client/node_modules
+/client/.env*
+/client/dist

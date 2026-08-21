@@ -1,0 +1,3 @@
+Context — after login the client proves identity on every request. That proof has to live in the browser. If JavaScript can read it, one XSS bug hands an attacker a working admin session.
+Decision — HttpOnly, Secure, SameSite cookie via Sanctum SPA mode. JavaScript never touches the token.
+Consequences — Gain: an XSS bug cannot exfiltrate a reusable session. Sacrifice: CSRF protection is now required (CSRF cookie + withCredentials + strict CORS); web and API must share a site, which constrains deployment; and when the React Native app arrives it cannot use cookies, so I'll add Sanctum's Bearer token path for mobile only. My spec suggested localStorage for mobile reuse — I chose the stronger web option instead and will pay for the second path later.
